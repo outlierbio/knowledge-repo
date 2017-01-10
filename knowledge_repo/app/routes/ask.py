@@ -2,7 +2,7 @@
 """
 import os
 
-from flask import request, render_template, Blueprint, current_app, jsonify
+from flask import request, redirect, render_template, Blueprint, current_app, jsonify
 import requests
 
 from ..models import PageView
@@ -55,7 +55,4 @@ def questions():
         if not title:
           return render_template('error.html')
         response = submit_question(title, body)
-        return jsonify({
-            'number': response['number'],
-            'title': title,
-            'body': body})
+        return redirect('/ask')
