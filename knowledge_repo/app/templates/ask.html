@@ -1,0 +1,52 @@
+{% extends "index-base.html" %}
+
+
+{% block header %} Ask A Question {% endblock %}
+
+
+{% block content %}
+
+<center>
+  <br>
+  <h3> Ask a bioinformatics expert </h3>
+  <br>
+</center>
+
+  <form action="/questions" method="post">
+      <div class="form-group">
+        <label for="title">Ask a question</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Question title" />   
+      </div>
+      <div class="form-group">
+        <label for="body">Additional details</label>
+        <textarea class="form-control" id="body" name="body" rows="4" placeholder="Add detailed comments, supporting information, or cross-reference datasets"></textarea>
+      </div>
+    <button type="submit" class="btn btn-primary">Ask</button>
+    
+  </form>
+
+<br>
+
+<div>
+  <h4>Examples</h4>
+  <blockquote>
+    <p><small>"What are the most frequent p53 mutations?"</small></p>
+    <p><small>"Is KRAS expressed when it has p.G13D mutation?"</small></p>
+    <p><small>"Do ER-positive tumors ever have high HER2 expression?"</small></p>
+  </blockquote>
+</div>
+
+<div>
+  <h3>Latest Questions</h3>
+  {% for question in questions %}
+    <li> <a href="{{ question.url }}">{{ question.title }}</a>
+    </li>
+    <br>
+  {% endfor %}
+
+{% endblock %}
+
+
+
+
+
